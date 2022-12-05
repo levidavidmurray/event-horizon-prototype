@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -5,14 +6,30 @@ namespace DefaultNamespace
     public class PlayerToken : MonoBehaviour
     {
         private Space _Space;
+        private Vector3 _StartPos;
 
-        public void SetTokenSpace(Space space)
+        public int CurrentSpaceIndex => _Space?.m_Index ?? -1;
+
+        private void Start()
+        {
+            _StartPos = transform.position;
+        }
+
+        // Return index of new space
+        public Card SetTokenSpace(Space space)
         {
             _Space = space;
             
-            if (!space.GetDeckSlot().m_Card) return;
+            if (!_Space)
+            {
+                transform.position = _StartPos;
+                return null;
+            }
             
-            space.GetDeckSlot().m_Card.Activate(this);
+            transform.position = space.transform.position;
+            
+            return space.m_DeckSlot.m_Card;
         }
+        
     }
 }

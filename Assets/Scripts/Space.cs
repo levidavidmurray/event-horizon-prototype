@@ -4,11 +4,18 @@ namespace DefaultNamespace
 {
     public class Space : MonoBehaviour
     {
-        [SerializeField] private DeckSlot _DeckSlot;
-        [SerializeField] private int _Index;
+        public DeckSlot m_DeckSlot { get; private set; }
+        public int m_Index { get; private set; }
 
-        public int m_Index => _Index;
-        public DeckSlot GetDeckSlot() => _DeckSlot;
+        public void SetDeckSlot(DeckSlot slot)
+        {
+            m_DeckSlot = slot;
+        }
+
+        public void SetIndex(int i)
+        {
+            m_Index = i;
+        }
 
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -5,16 +6,26 @@ namespace DefaultNamespace
     
     public class Deck : MonoBehaviour
     {
-        [SerializeField] private DeckSlot[] _DeckSlot;
+        public DeckSlot[] m_DeckSlots { get; private set; }
 
+        private void Awake()
+        {
+            m_DeckSlots = GetComponentsInChildren<DeckSlot>();
+        }
+        
         public void AddCardToSlot(Card card, int slotIndex)
         {
-            _DeckSlot[slotIndex].AddCard(card);
+            m_DeckSlots[slotIndex].AddCard(card);
         }
         
         public void RemoveCardFromSlot(int slotIndex)
         {
-            _DeckSlot[slotIndex].RemoveCard();
+            m_DeckSlots[slotIndex].RemoveCard();
+        }
+
+        public Card GetCardFromSlot(int slotIndex)
+        {
+            return m_DeckSlots[slotIndex].m_Card;
         }
         
     }

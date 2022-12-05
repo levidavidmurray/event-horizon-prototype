@@ -15,9 +15,10 @@ namespace DefaultNamespace
         [SerializeField] private MoveDirection _MoveDirection = MoveDirection.Forward;
         [SerializeField] private int _SpacesMoved = 1;
         
-        public override void Activate(PlayerToken token)
+        public override int Activate(PlayerToken token)
         {
-            
+            Debug.Log($"[CardMoveForwardBackN] MoveDir: {_MoveDirection}, Spaces: {_SpacesMoved}");
+            return (int)_MoveDirection * _SpacesMoved;
         }
     }
 }

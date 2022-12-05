@@ -4,7 +4,6 @@ namespace DefaultNamespace
 {
     public class DeckSlot : MonoBehaviour
     {
-        
         private Card _Card;
 
         public Card m_Card => _Card;
