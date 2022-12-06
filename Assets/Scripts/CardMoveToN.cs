@@ -12,5 +12,10 @@ namespace DefaultNamespace
             Debug.Log($"[CardMoveToN]", this);
             return _SpaceIndex - token.CurrentSpaceIndex;
         }
+
+        public override string ToString()
+        {
+            return $"[Card::CardMoveToN] MoveTo{_SpaceIndex}";
+        }
     }
 }

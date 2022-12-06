@@ -16,7 +16,6 @@ namespace DefaultNamespace
         {
             _CardTypes = Resources.LoadAll<Card>("Cards");
             
-            print($"Cards: {_CardTypes.Length}");
             
             _CardTypeCount = new int[_CardTypes.Length];
 
@@ -27,7 +26,6 @@ namespace DefaultNamespace
                 _CardTypeCount[i] = _CardTypes[i].totalInDeck;
             }
             
-            print($"Deck Size: {numCards}");
             ShuffleCards(numCards);
         }
 
@@ -53,7 +51,6 @@ namespace DefaultNamespace
 
                 _CardTypeCount[cardIndex]--;
                 _ShuffledCardIndices[i] = cardIndex;
-                print($"{i}: {_CardTypes[cardIndex].name}");
             }
         }
         

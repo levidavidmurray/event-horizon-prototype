@@ -20,5 +20,11 @@ namespace DefaultNamespace
             Debug.Log($"[CardMoveForwardBackN] MoveDir: {_MoveDirection}, Spaces: {_SpacesMoved}");
             return (int)_MoveDirection * _SpacesMoved;
         }
+
+        public override string ToString()
+        {
+            var dir = _MoveDirection == MoveDirection.Forward ? "Forward" : "Back";
+            return $"[Card::CardMoveForwardBackN] Move{dir}{_SpacesMoved}";
+        }
     }
 }
