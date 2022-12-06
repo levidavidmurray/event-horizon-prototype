@@ -5,7 +5,5 @@ using UnityEngine;
 
 public class CardObject : MonoBehaviour
 {
-    [SerializeField] private Card _Card;
-
-    public Card m_Card => _Card;
+    public Card m_Card;
 }

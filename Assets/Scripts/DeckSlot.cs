@@ -4,20 +4,20 @@ namespace DefaultNamespace
 {
     public class DeckSlot : MonoBehaviour
     {
-        private Card _Card;
+        private CardObject _CardObj;
 
-        public Card m_Card => _Card;
+        public Card m_Card => _CardObj?.m_Card;
 
-        public void AddCard(Card card)
+        public void SetCard(CardObject card)
         {
-            _Card = card;
+            _CardObj = card;
         }
 
-        public Card RemoveCard()
+        public CardObject RemoveCard()
         {
-            Card card = _Card;
-            _Card = null;
-            return card;
+            var cardObj = _CardObj;
+            _CardObj = null;
+            return cardObj;
         }
         
     }

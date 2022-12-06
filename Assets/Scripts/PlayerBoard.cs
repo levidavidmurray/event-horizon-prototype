@@ -10,6 +10,7 @@ namespace DefaultNamespace
         [SerializeField] private Card[] _Cards;
         [SerializeField] private Deck _Deck;
         [SerializeField] private CardSpawner _CardSpawner;
+        [SerializeField] private GameObject _CardObj;
 
         private Space[] _Spaces;
 
@@ -26,8 +27,18 @@ namespace DefaultNamespace
             
             for (int i = 0; i < _Cards.Length; i++)
             {
-                Card card = _CardSpawner.DrawCard();
-                _Cards[i] = card;
+                int slotIndex = Random.Range(0, _Spaces.Length);
+                while (_Deck.GetCardFromSlot(slotIndex) != null)
+                {
+                    slotIndex = Random.Range(0, _Spaces.Length);
+                }
+                
+                var deckSlot = _Deck.m_DeckSlots[slotIndex];
+                var cardObj = Instantiate(_CardObj, deckSlot.transform.position, Quaternion.identity).GetComponent<CardObject>();
+                cardObj.m_Card = _CardSpawner.DrawCard();
+                
+                deckSlot.SetCard(cardObj);
+                // _Cards[i] = card;
             }
         }
 

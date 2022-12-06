@@ -13,9 +13,9 @@ namespace DefaultNamespace
             m_DeckSlots = GetComponentsInChildren<DeckSlot>();
         }
         
-        public void AddCardToSlot(Card card, int slotIndex)
+        public void AddCardToSlot(CardObject card, int slotIndex)
         {
-            m_DeckSlots[slotIndex].AddCard(card);
+            m_DeckSlots[slotIndex].SetCard(card);
         }
         
         public void RemoveCardFromSlot(int slotIndex)
