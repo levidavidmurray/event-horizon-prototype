@@ -9,6 +9,7 @@ namespace DefaultNamespace
         [SerializeField] private PlayerToken _ActivePlayerToken;
         [SerializeField] private Card[] _Cards;
         [SerializeField] private Deck _Deck;
+        [SerializeField] private CardSpawner _CardSpawner;
 
         private Space[] _Spaces;
 
@@ -20,12 +21,13 @@ namespace DefaultNamespace
                 _Spaces[i].SetIndex(i);
                 _Spaces[i].SetDeckSlot(_Deck.m_DeckSlots[i]);
             }
+
+            _Cards = new Card[3];
             
             for (int i = 0; i < _Cards.Length; i++)
             {
-                if (!_Cards[i]) continue;
-                
-                _Deck.AddCardToSlot(_Cards[i], i);
+                Card card = _CardSpawner.DrawCard();
+                _Cards[i] = card;
             }
         }
 

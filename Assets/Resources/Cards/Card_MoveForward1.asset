@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6597581b7da64c1f8fa017ae8face746, type: 3}
-  m_Name: Card_MoveForward2
+  m_Name: Card_MoveForward1
   m_EditorClassIdentifier: 
+  totalInDeck: 2
   _MoveDirection: 1
-  _SpacesMoved: 2
+  _SpacesMoved: 1
