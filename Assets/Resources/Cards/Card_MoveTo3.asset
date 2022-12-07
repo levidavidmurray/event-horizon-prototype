@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Card_MoveTo3
   m_EditorClassIdentifier: 
   totalInDeck: 2
-  _SpaceIndex: 2
+  _SpaceIndex: 3

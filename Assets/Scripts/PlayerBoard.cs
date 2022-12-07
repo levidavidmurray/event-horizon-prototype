@@ -21,8 +21,14 @@ namespace DefaultNamespace
             for (var i = 0; i < _Spaces.Length; i++)
             {
                 _Spaces[i].SetIndex(i);
-                _Spaces[i].SetDeckSlot(_Deck.m_DeckSlots[i]);
+                
+                // First and last space should not have deck slots
+                if (i == 0 || i == _Spaces.Length - 1) continue;
+                
+                _Spaces[i].SetDeckSlot(_Deck.m_DeckSlots[i-1]);
             }
+
+            _ActivePlayerToken.SetTokenSpace(_Spaces[0]);
 
             // Debug with hardcoded cards
             if (_Cards.Length > 0)
@@ -44,10 +50,10 @@ namespace DefaultNamespace
             
             for (int i = 0; i < _Cards.Length; i++)
             {
-                int slotIndex = Random.Range(0, _Spaces.Length);
+                int slotIndex = Random.Range(0, _Deck.m_DeckSlots.Length);
                 while (_Deck.GetCardFromSlot(slotIndex) != null)
                 {
-                    slotIndex = Random.Range(0, _Spaces.Length);
+                    slotIndex = Random.Range(0, _Deck.m_DeckSlots.Length);
                 }
                 
                 var deckSlot = _Deck.m_DeckSlots[slotIndex];
@@ -84,7 +90,7 @@ namespace DefaultNamespace
 
         private void UpdateTokenSpace(int newSpaceIndex)
         {
-            if (newSpaceIndex > _Spaces.Length - 1)
+            if (newSpaceIndex > _Spaces.Length - 1 || newSpaceIndex < 0)
             {
                 print($"OVER!");
                 return;
@@ -93,24 +99,18 @@ namespace DefaultNamespace
             int curSpaceIndex = _ActivePlayerToken.CurrentSpaceIndex;
             int spacesToMove = newSpaceIndex - curSpaceIndex;
             int dir = spacesToMove < 0 ? -1 : 1;
-            //
-            // var moveActions = new Action[spacesToMove];
-            //
-            // // Start from end space and work backwards
             var spacePositions = new Vector3[Mathf.Abs(spacesToMove)];
-            // var i = 0;
-            // for (var spaceIndex = curSpaceIndex + dir; spaceIndex != newSpaceIndex; spaceIndex += dir)
+            
             for (var i = 0; i < Mathf.Abs(spacesToMove); i++)
             {
                 // find space in direction
-                var space = _Spaces[curSpaceIndex + dir * (i+1)];
+                var spaceIndex = curSpaceIndex + dir * (i + 1);
+                var space = _Spaces[spaceIndex];
                 spacePositions[i] = space.transform.position;
             }
-            // var newSpace = _Spaces[newSpaceIndex];
             
             _ActivePlayerToken.JumpToPositions(spacePositions, () =>
             {
-
                 CardObject cardObj = _ActivePlayerToken.SetTokenSpace(_Spaces[newSpaceIndex]);
 
                 if (!cardObj) return;
@@ -118,12 +118,14 @@ namespace DefaultNamespace
                 Card card = cardObj.m_Card;
 
                 int numSpacesToMove = card.Activate(_ActivePlayerToken);
-                
+
                 Destroy(cardObj.gameObject);
+
+                newSpaceIndex = Mathf.Max(newSpaceIndex + numSpacesToMove, 0);
 
                 if (numSpacesToMove != 0)
                 {
-                    UpdateTokenSpace(newSpaceIndex + numSpacesToMove);
+                    UpdateTokenSpace(newSpaceIndex);
                 }
             });
         }

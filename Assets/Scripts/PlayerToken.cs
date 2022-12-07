@@ -111,6 +111,8 @@ namespace DefaultNamespace
             
             transform.position = space.transform.position;
 
+            if (!_Space.m_DeckSlot) return null;
+
             return space.m_DeckSlot.RemoveCard();
         }
         
