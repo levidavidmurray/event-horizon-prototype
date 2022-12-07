@@ -20,6 +20,8 @@ namespace DefaultNamespace
         private bool _IsJumping;
         private Action _OnJumpActionsComplete;
 
+        public bool IsJumping => _IsJumping;
+        
         public int CurrentSpaceIndex => _Space?.m_Index ?? -1;
 
         private void Start()
@@ -53,7 +55,6 @@ namespace DefaultNamespace
 
         public void JumpToPositions(Vector3[] positions, Action onComplete)
         {
-            print($"Jumping {positions.Length} spaces");
             _JumpActionIndex = 0;
             _JumpActions = new Action[positions.Length];
             _OnJumpActionsComplete = onComplete;
@@ -65,7 +66,6 @@ namespace DefaultNamespace
                 {
                     JumpToPosition(pos, () =>
                     {
-                        print($"Jumped space {j}");
                         _JumpActionIndex++;
                         _IsJumping = false;
 
@@ -85,9 +85,6 @@ namespace DefaultNamespace
         public void JumpToPosition(Vector3 endPos, Action onComplete)
         {
             var curPos = transform.position;
-            print($"Jumping from {curPos} to {endPos}");
-            float halfX = endPos.x - curPos.x;
-            // var handlePos = new Vector3(halfX, curPos.y + _JumpCurveHandleHeight, curPos.z);
             var handle1Pos = new Vector3(endPos.x, curPos.y + _JumpCurveHandleHeight, curPos.z);
             var handle2Pos = new Vector3(curPos.x, curPos.y + _JumpCurveHandleHeight, curPos.z);
 

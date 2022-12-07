@@ -17,7 +17,6 @@ namespace DefaultNamespace
         
         public override int Activate(PlayerToken token)
         {
-            Debug.Log($"[CardMoveForwardBackN] MoveDir: {_MoveDirection}, Spaces: {_SpacesMoved}");
             return (int)_MoveDirection * _SpacesMoved;
         }
 

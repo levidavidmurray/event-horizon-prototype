@@ -589,10 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ActivePlayerToken: {fileID: 1195620916}
-  _Cards:
-  - {fileID: 11400000, guid: ae3fa263561b109418fdb1c7bfe410a5, type: 2}
-  - {fileID: 11400000, guid: 8d8deeb5891d249ad83731254dac2432, type: 2}
-  - {fileID: 11400000, guid: 3e3e811a522de4a1d9ae4b6ecc69e467, type: 2}
+  _Cards: []
   _Deck: {fileID: 715963302}
   _CardSpawner: {fileID: 146755346}
   _CardObj: {fileID: 8692634672521207756, guid: 4bf7939c02eff57409b8f055c8fc822c, type: 3}

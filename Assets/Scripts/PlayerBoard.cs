@@ -80,6 +80,8 @@ namespace DefaultNamespace
 
         public void RollDice()
         {
+            if (_ActivePlayerToken.IsJumping) return;
+            
             int stepsToMove = Random.Range(1, 4);
             // int stepsToMove = Random.Range(2, 3);
             print($"ROLL {stepsToMove}");
@@ -116,6 +118,7 @@ namespace DefaultNamespace
                 if (!cardObj) return;
 
                 Card card = cardObj.m_Card;
+                print($"Activate: {card}");
 
                 int numSpacesToMove = card.Activate(_ActivePlayerToken);
 
