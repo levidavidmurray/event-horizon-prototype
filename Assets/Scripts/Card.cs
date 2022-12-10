@@ -6,6 +6,8 @@ namespace DefaultNamespace
     public abstract class Card : ScriptableObject
     {
         public int totalInDeck = 0;
+
+        public Sprite cardSprite;
         // Return number of spaces to move
         public abstract int Activate(PlayerToken token);
     }

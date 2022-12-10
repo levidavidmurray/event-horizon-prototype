@@ -12,6 +12,7 @@ namespace DefaultNamespace
         [SerializeField] private Deck _Deck;
         [SerializeField] private CardSpawner _CardSpawner;
         [SerializeField] private GameObject _CardObj;
+        [SerializeField] private float _DestroyCardDelay = 1f;
 
         private Space[] _Spaces;
 
@@ -117,12 +118,16 @@ namespace DefaultNamespace
 
                 if (!cardObj) return;
 
-                Card card = cardObj.m_Card;
-                print($"Activate: {card}");
+                print($"Activate: {cardObj.m_Card}");
 
-                int numSpacesToMove = card.Activate(_ActivePlayerToken);
+                int numSpacesToMove = cardObj.Activate(_ActivePlayerToken);
 
-                Destroy(cardObj.gameObject);
+                LeanTween.delayedCall(_DestroyCardDelay, () =>
+                {
+                    Destroy(cardObj.gameObject);
+                });
+
+                // Destroy(cardObj.gameObject);
 
                 newSpaceIndex = Mathf.Max(newSpaceIndex + numSpacesToMove, 0);
 

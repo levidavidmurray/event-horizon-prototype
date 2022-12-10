@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Card_MoveForward2
   m_EditorClassIdentifier: 
   totalInDeck: 2
+  cardSprite: {fileID: 21300000, guid: e6b9c27e032525349b034d6a166ce51b, type: 3}
   _MoveDirection: 1
   _SpacesMoved: 2
