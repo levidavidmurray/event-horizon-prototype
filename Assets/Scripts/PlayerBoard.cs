@@ -9,6 +9,7 @@ namespace DefaultNamespace
     {
         [SerializeField] private PlayerToken _ActivePlayerToken;
         [SerializeField] private Card[] _Cards;
+        [SerializeField] private Hand _Hand;
         [SerializeField] private Deck _Deck;
         [SerializeField] private CardSpawner _CardSpawner;
         [SerializeField] private GameObject _CardObj;
@@ -47,23 +48,27 @@ namespace DefaultNamespace
             }
 
             // return;
-            _Cards = new Card[3];
+            // _Cards = new Card[3];
+            //
+            // for (int i = 0; i < _Cards.Length; i++)
+            // {
+            //     int slotIndex = Random.Range(0, _Deck.m_DeckSlots.Length);
+            //     while (_Deck.GetCardFromSlot(slotIndex) != null)
+            //     {
+            //         slotIndex = Random.Range(0, _Deck.m_DeckSlots.Length);
+            //     }
+            //     
+            //     var deckSlot = _Deck.m_DeckSlots[slotIndex];
+            //     var cardObj = Instantiate(_CardObj, deckSlot.transform.position, Quaternion.identity).GetComponent<CardObject>();
+            //     cardObj.m_Card = _CardSpawner.DrawCard();
+            //     
+            //     deckSlot.SetCard(cardObj);
+            //     // _Cards[i] = card;
+            // }
             
-            for (int i = 0; i < _Cards.Length; i++)
-            {
-                int slotIndex = Random.Range(0, _Deck.m_DeckSlots.Length);
-                while (_Deck.GetCardFromSlot(slotIndex) != null)
-                {
-                    slotIndex = Random.Range(0, _Deck.m_DeckSlots.Length);
-                }
-                
-                var deckSlot = _Deck.m_DeckSlots[slotIndex];
-                var cardObj = Instantiate(_CardObj, deckSlot.transform.position, Quaternion.identity).GetComponent<CardObject>();
-                cardObj.m_Card = _CardSpawner.DrawCard();
-                
-                deckSlot.SetCard(cardObj);
-                // _Cards[i] = card;
-            }
+            _Hand.SetCardInHand(_CardSpawner.DrawCard());
+            _Hand.SetCardInHand(_CardSpawner.DrawCard());
+            _Hand.SetCardInHand(_CardSpawner.DrawCard());
         }
 
         private void Update()

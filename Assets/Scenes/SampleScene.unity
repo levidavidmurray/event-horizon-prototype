@@ -590,9 +590,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ActivePlayerToken: {fileID: 1195620916}
   _Cards: []
+  _Hand: {fileID: 1705818126}
   _Deck: {fileID: 715963302}
   _CardSpawner: {fileID: 146755346}
   _CardObj: {fileID: 8692634672521207756, guid: 4bf7939c02eff57409b8f055c8fc822c, type: 3}
+  _DestroyCardDelay: 1
 --- !u!4 &611283333
 Transform:
   m_ObjectHideFlags: 0
@@ -1191,6 +1193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1705818125}
+  - component: {fileID: 1705818126}
   m_Layer: 0
   m_Name: PlayerHand
   m_TagString: Untagged
@@ -1206,13 +1209,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705818124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2481093, y: 0.78728694, z: -0.046690818}
+  m_LocalPosition: {x: 0.03, y: -4.2, z: -0.046690818}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1705818126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705818124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577c4d9e742243bf9a2d17ca6d4ee6e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _CardObj: {fileID: 8692634672521207756, guid: 4bf7939c02eff57409b8f055c8fc822c, type: 3}
+  _HandSize: 3
+  _CardSpace: 2.5
+  _CardObjects: []
 --- !u!1001 &1849095115
 PrefabInstance:
   m_ObjectHideFlags: 0
