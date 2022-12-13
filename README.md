@@ -15,12 +15,12 @@ In Event Horizon, players must escape the gravitational pull of a black hole by 
 4. If the card instructs you to move to a new space with a face down card, follow those instructions as well.
 5. The game continues until one player retrieves all 3 of their tokens from the black hole, at which point they win the game.
 
-## Card Types
+### Card Types
 - Move to N: Move your player token to the Nth path space (where N can be 1-8).
 - Move Forward/Backward X: Move your player token forward/backward by X number of spaces (where X can be 1-4).
 - Mimic: Activates the card of the same space as this one on your opponent's game mat. Opponent's card is left face up. Opponent can still activate the card.
 - Swap: Permits you to swap any face down card on your own player mat with any other card in your hand. You must play this card face up. It cannot be swapped again.
 
-## Special Rules
+### Special Rules
 - You can only escape the 8th space by moving by 1. Roll 1 on the 8th space, move forward 1 card on 8, move forward 2 on 7, etc.
 - Overrolling causes you to activate any card placed on 8.
