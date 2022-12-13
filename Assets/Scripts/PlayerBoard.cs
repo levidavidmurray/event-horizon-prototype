@@ -20,6 +20,8 @@ namespace DefaultNamespace
         public void Start()
         {
             _Spaces = GetComponentsInChildren<Space>();
+            
+            // Correlate spaces with deck slots
             for (var i = 0; i < _Spaces.Length; i++)
             {
                 _Spaces[i].SetIndex(i);
@@ -47,25 +49,6 @@ namespace DefaultNamespace
                 return;
             }
 
-            // return;
-            // _Cards = new Card[3];
-            //
-            // for (int i = 0; i < _Cards.Length; i++)
-            // {
-            //     int slotIndex = Random.Range(0, _Deck.m_DeckSlots.Length);
-            //     while (_Deck.GetCardFromSlot(slotIndex) != null)
-            //     {
-            //         slotIndex = Random.Range(0, _Deck.m_DeckSlots.Length);
-            //     }
-            //     
-            //     var deckSlot = _Deck.m_DeckSlots[slotIndex];
-            //     var cardObj = Instantiate(_CardObj, deckSlot.transform.position, Quaternion.identity).GetComponent<CardObject>();
-            //     cardObj.m_Card = _CardSpawner.DrawCard();
-            //     
-            //     deckSlot.SetCard(cardObj);
-            //     // _Cards[i] = card;
-            // }
-            
             _Hand.SetCardInHand(_CardSpawner.DrawCard());
             _Hand.SetCardInHand(_CardSpawner.DrawCard());
             _Hand.SetCardInHand(_CardSpawner.DrawCard());
@@ -81,6 +64,27 @@ namespace DefaultNamespace
             if (Input.GetKeyUp(KeyCode.R))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+
+            if (_Hand.SelectedCardObj)
+            {
+                float closestDist = Mathf.Infinity;
+                int closestDistIndex = -1;
+                // calculate closest deck slot to card
+                for (int i = 0; i < _Deck.m_DeckSlots.Length; i++)
+                {
+                    var dist = Vector2.Distance(
+                        _Deck.m_DeckSlots[i].transform.position,
+                        _Hand.SelectedCardObj.transform.position
+                    );
+
+                    if (dist > closestDist || _Deck.m_DeckSlots[i].m_Card) continue;
+
+                    closestDist = dist;
+                    closestDistIndex = i;
+                }
+
+                _Hand.m_ClosestDeckSlot = _Deck.m_DeckSlots[closestDistIndex];
             }
         }
 
